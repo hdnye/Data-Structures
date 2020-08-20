@@ -7,7 +7,8 @@ class ListNode:
         self.prev = prev
         self.value = value
         self.next = next
-            
+    def get_value(self):
+        return self.value        
 """
 Our doubly-linked list class. It holds references to 
 the list's head and tail nodes.
