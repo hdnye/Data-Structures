@@ -25,10 +25,9 @@ class LinkedList:
 
         else: 
             new_tail = Node(value, None)
-            old_tail = self.tail
-            old_tail.next = new_tail
-            self.head = new_tail
-        self.length += 1
+            self.tail.next = new_tail
+            self.tail = new_tail             
+        self.length = self.length + 1
 
         
 # remove / remove -->  remove_HEAD
@@ -72,8 +71,15 @@ class LinkedList:
         # stop when current_node == self.tail   
         # save the current_tail value
         # set self.tail to current_value
-        else:
-            current_tail = self.tail
-            self.tail = current_tail.next
-            self.length = self.length - 1
-            return current_tail.value
+        # else:
+        #     current_tail = self.tail
+        #     self.tail = current_tail.next
+        #     self.length = self.length - 1
+        #     return current_tail.value
+        node = self.head
+        while node.next != self.tail:
+            node = node.next
+        value = self.tail.value
+        self.tail = node
+        self.length = self.length -1
+        return value
