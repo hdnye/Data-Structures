@@ -68,8 +68,10 @@ class LinkedList:
         if self.tail == self.head:
             # save current_tail value
             current_tail = self.tail
+            # set to none
             self.head = None
             self.tail = None
+            # return current value
             return current_tail.value
             
         # General case start at head & iterate to next-to-last node
@@ -81,5 +83,62 @@ class LinkedList:
         value = self.tail.value
         # set self.tail to current_value 
         self.tail = node
+        # set node.next to none
+        node.next = None
         self.length = self.length -1
         return value
+
+    def add_to_head(self, value):
+           # Is there a head?
+            if not self.head:                
+           #Create new node with next = none
+               new_node = Node(value, None)          
+           # set self.head = new node
+               self.head = new_node
+           #  set self.tail = new node
+               self.tail = new_node
+            # increment self.length
+               self.length +=1
+            else:
+            # if Head
+               new_node.next = self.head
+            # new_node.next = self.head
+            # set self.head to new node
+               self.head = new_node
+               self.length +=1
+
+
+    # Remove at Index
+    def remove_at_index(self, index):
+        # check that langth > i if not, return none
+        if index >= self.length:
+            return None
+        # Check if only 1 item in list
+        if self.length == 1 and index == 0:
+            target  = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return target.value
+
+        # we need a pointer to the previous node          
+        prev_node = self.head
+        # Iterate through the loop i times:
+        for i in range(index - 1):
+        # this will point to the prev node
+            prev_node = prev_node.next
+
+        target = prev_node.next
+        prev_node.next = target.next
+        target.next = None
+
+        self.length -= 1
+
+        return target.value
+
+    #   a) cureent = self.head
+    #   b) For i times...
+    #       i) Current = current.next  
+    #   c) to_remove = current_node.next 
+    #   d) current_node.next= to_remove.next
+    #       to_remove.next = none

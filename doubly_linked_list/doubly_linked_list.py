@@ -73,11 +73,40 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
-
+       # Check for empty pointers
+       # Get prev node = node.prev
+       # Set prev_node.next to node.next
+       # Set next_node.previous = previous_node
+       # Decrement length 
+       # Remove pointers from deleted node:
+       #    set node.prev to none 
+       #    set node.next to none
+       # return node.value
     """
     Finds and returns the maximum value of all the nodes 
     in the List.
     """
     def get_max(self):
-        pass
+        # if len = 0 return none
+        if self.length == 0:
+            return None
+        # if len = 1
+        if self.length == 1:
+            return self.head.value
+
+        # cur_max starts as head.value
+        cur_max = self.head.value
+
+        # iterate through the list
+        cur_node = self.head
+
+        # stop when cur_node is none
+        while cur_node is not None:
+            # compare cur_max to each val & update cur_max
+            if cur_max < cur_node.value:
+                cur_max = cur_node.value
+
+            # move cur_node forward
+            cur_node = cur_node.next
+            # return cur_max
+            return cur_node
