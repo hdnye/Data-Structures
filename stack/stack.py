@@ -55,13 +55,13 @@ print('Popping from back: ', time.time() - start)
 #         return len(self.storage)
 
 #     def append(self, value):
-#            # Add to head 
-#         self.storage.add_to_head(value)
+#            # Add to tail 
+#         self.storage.add_to_tail(value)
 
 #     def pop(self):
 #         if len(self.storage) == 0:
 #             return None
-#         # Remove from head 
+#         # Remove from tail
 #         return self.storage.remove_tail()
 
  
