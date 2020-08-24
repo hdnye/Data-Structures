@@ -62,6 +62,6 @@ print('Popping from back: ', time.time() - start)
 #         if len(self.storage) == 0:
 #             return None
 #         # Remove from head 
-#         return self.storage.remove_head()
+#         return self.storage.remove_tail()
 
  
