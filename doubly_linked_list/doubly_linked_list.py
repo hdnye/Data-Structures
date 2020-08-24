@@ -74,14 +74,25 @@ class DoublyLinkedList:
     """
     def delete(self, node):
        # Check for empty pointers
+       if self.length == 0:
+           return None
        # Get prev node = node.prev
+       prev_node = node.prev
        # Set prev_node.next to node.next
-       # Set next_node.previous = previous_node
+       prev_node.next = node.next
+       # Set next_node to node.next
+       next_node = node.next
+       # Set next_node to point to prev_node
+       next_node.prev = prev_node
        # Decrement length 
+       self.length -= 1
        # Remove pointers from deleted node:
        #    set node.prev to none 
+       node.prev = None
        #    set node.next to none
+       node.next = None
        # return node.value
+       return node.value
     """
     Finds and returns the maximum value of all the nodes 
     in the List.
@@ -97,9 +108,10 @@ class DoublyLinkedList:
         # cur_max starts as head.value
         cur_max = self.head.value
 
-        # iterate through the list
+        # Starrt current node at head
         cur_node = self.head
 
+        # Then iterate through the list
         # stop when cur_node is none
         while cur_node is not None:
             # compare cur_max to each val & update cur_max
