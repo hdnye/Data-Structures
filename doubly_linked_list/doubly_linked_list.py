@@ -110,7 +110,33 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_tail(self):
-        pass
+        # check if it's there
+        if not self.tail:
+            return None
+
+        # List of one node
+        if self.tail == self.head:
+            # save current_tail value
+            current_tail = self.tail
+            # set to none
+            self.head = None
+            self.tail = None
+            # return current value
+            return current_tail.value
+
+        # General case start at head & iterate to next-to-last node
+        # stop when current_node == self.tail
+        node = self.head
+        while node.next != self.tail:
+            node = node.next
+        # save the current_tail value
+        value = self.tail.value
+        # set self.tail to current_value
+        self.tail = node
+        # set node.next to none
+        node.next = None
+        self.length = self.length - 1
+        return value
             
     """
     Removes the input node from its current spot in the 
@@ -126,7 +152,9 @@ class DoublyLinkedList:
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-      pass
+        self.delete(node)
+        self.add_to_tail(node.value)
+     
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
@@ -146,12 +174,12 @@ class DoublyLinkedList:
           # Set next_node to node.next
         next_node = node.next
           # Set next_node to point to prev_node
-        if next_node is None:
+        if next_node == None:
              self.tail = node.prev
         else: 
             next_node.prev = prev_node
           # Decrement length 
-        self.length -=1
+        self.length -= 1
           # Remove pointers from deleted node:
           # set node.prev to none 
         node.prev = None
