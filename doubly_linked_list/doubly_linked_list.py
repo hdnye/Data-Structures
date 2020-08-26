@@ -22,7 +22,15 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
-       
+    def __str__(self):
+        s = ''
+        cur_node = self.head
+        while cur_node:
+            s += f'{cur_node.value} -> '
+            cur_node = cur_node.next
+        s += 'None'
+        return s
+
     """
     Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
@@ -71,9 +79,13 @@ class DoublyLinkedList:
             return cur_head.value
             # Else set new head
         else: 
-            cur_head = self.head
+            old_head = self.head
+            old_head.next = None
             # set pointer to next node
-            self.head = cur_head.next
+            # self.head = cur_head.next
+            # new code
+            self.head = self.head.next
+            self.head.prev = None
             # decrement list
             self.length -=1
             # rtn value
@@ -85,7 +97,7 @@ class DoublyLinkedList:
     """
     def add_to_tail(self, value):
             # check if there's a tail:
-            # If no, empty list
+            # If no, empty list        
         if not self.tail:
             new_tail = ListNode(value)
             # Point to head/tail
@@ -97,14 +109,14 @@ class DoublyLinkedList:
         else:
             #create a new node with the value we want to add
             new_tail = ListNode(value, None)
-             # set current tail.next to the new node
-            self.tail.next = new_tail
             # set prev node to point to new tail
             new_tail.prev = self.tail
+            # set current tail.next to the new node
+            self.tail.next = new_tail
             # set self.tail to new node
             self.tail = new_tail
             self.length += 1
-       
+            return new_tail.value
             
     """
     Removes the List's current tail node, making the 
@@ -137,6 +149,7 @@ class DoublyLinkedList:
         # set self.tail to current_value
         self.tail = value
         self.length -= 1
+        # delete tail
         self.delete(self.tail)   
         # set tail pointer to none
         node.next = None

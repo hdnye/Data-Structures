@@ -1,8 +1,7 @@
- """
+"""
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
 at searching for a particular piece of data in the tree. 
-
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
    on the BSTNode class.
@@ -16,8 +15,31 @@ class BSTNode:
         self.right = None
 
     # Insert the given value into the tree
-    def insert(self, value):
-        pass
+    def insert(self, value):        
+        # Compare target value to node.value
+        # if value > node.value:
+        if value >= self.value:
+        # if value is greater, go right
+            # Check if single element
+            # if node.right is none: create new node there
+            if self. right is None: 
+                self.right = BSTNode(value)                
+            # Else right.node != none: 
+            else: 
+                # Insert value into node.right
+                right_child = self.right
+                right_child.insert(value)        
+        # Else/if value < node.value
+        if value < self.value:         
+            # check if single element
+            # if node.left is none: create new node there
+            if self.left is None: 
+                self.left = BSTNode(value)
+            # else left.node != none:
+            else:
+            # insert value into self.left.insert(value) 
+                left_child = self.left
+                left_child.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -63,7 +85,7 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-bst = BSTNode(1)
+bst = BSTNode(1) # This is the root node
 
 bst.insert(8)
 bst.insert(5)
@@ -73,13 +95,13 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.bft_print()
-bst.dft_print()
+# bst.bft_print()
+# bst.dft_print()
 
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft()
-print("in order")
-bst.in_order_dft()
-print("post order")
-bst.post_order_dft()  
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft()
+# print("in order")
+# bst.in_order_dft()
+# print("post order")
+# bst.post_order_dft()  
