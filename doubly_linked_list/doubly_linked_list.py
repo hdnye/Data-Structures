@@ -138,6 +138,8 @@ class DoublyLinkedList:
         self.tail = value
         self.length -= 1
         self.delete(self.tail)   
+        # set tail pointer to none
+        node.next = None
         return value
            
     """
