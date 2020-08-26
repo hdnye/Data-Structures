@@ -127,7 +127,7 @@ class LinkedList:
         for i in range(index - 1):
         # this will point to the prev node
             prev_node = prev_node.next
-
+            
         target = prev_node.next
         prev_node.next = target.next
         target.next = None
