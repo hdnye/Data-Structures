@@ -135,7 +135,19 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
-      pass
+      s = []
+      cur_node = self
+     
+      while True:
+        if cur_node.left != None:
+            # pointer to node on stack
+            s.append(cur_node.left)
+            # move left
+            cur_node.left.bft_print()
+        elif(s):
+            # move pointer to node on stack
+            s.pop(cur_node.right)
+            cur_node.right.bft_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
