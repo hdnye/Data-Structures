@@ -8,7 +8,6 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
-# from stack import Stack
 
 class BSTNode:
     def __init__(self, value):
@@ -127,7 +126,7 @@ class BSTNode:
         # check left side for value
         if self.left != None: 
             self.left.in_order_print()
-            print(self.value)
+        print(self.value)
         # check right side for value
         if self.right != None: 
             self.right.in_order_print()                   
@@ -135,19 +134,24 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
-      s = []
-      cur_node = self
-     
-      while True:
-        if cur_node.left != None:
-            # pointer to node on stack
-            s.append(cur_node.left)
-            # move left
-            cur_node.left.bft_print()
-        elif(s):
-            # move pointer to node on stack
-            s.pop(cur_node.right)
-            cur_node.right.bft_print()
+        from collections import deque
+        if self is None: 
+            return None    
+        queue = deque()
+        # start at the head
+        # push onto the queue
+        queue.append(self)
+        # while queue is not empty
+        while len(queue) > 0: 
+            #remove cur_node from queue & process
+            cur_node = queue.popleft()    
+            print(cur_node.value)        
+            # Add children to queue
+            if cur_node.left != None:
+                queue.append(cur_node.left)            
+            if cur_node.right != None:   
+                queue.append(cur_node.right)                  
+                    
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -179,12 +183,12 @@ bst.insert(4)
 bst.insert(2)
 
 bst.bft_print()
-bst.dft_print()
+# bst.dft_print()
 
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft()
-print("in order")
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft()
+# print("in order")
 # bst.in_order_dft()
-print("post order")
-bst.post_order_dft()  
+# print("post order")
+# bst.post_order_dft()  
